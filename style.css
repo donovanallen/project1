@@ -1,0 +1,15 @@
+form {
+  display: none;
+}
+
+#hangman {
+  width: 100%;
+}
+
+#hangman img {
+  width: 100%;
+}
+
+h1, h3 {
+  text-align: center;
+}
