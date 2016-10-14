@@ -6,9 +6,11 @@ $(document).ready(function(){
     score: 0,
   }; // this could also be an array?
 
-  var mainWord = "HANGMAN";
+  var mainWord = "hangman";
 
   var $letterGuess = $("#letterGuess");
+
+
 
   var $button = $("button");
 
@@ -27,7 +29,8 @@ $(document).ready(function(){
   });
 
 //gets player's name and greets, logs in obj
-  $play.on("click", function(){
+  $play.on("click", function(evt){
+    evt.preventDefault();
     playerOne.name = $nameInput.val();
     $form.hide();
     alert("Hello, " + playerOne.name);
@@ -43,30 +46,30 @@ $(document).ready(function(){
 // });
 
   $letterGuess.keypress(function(evt){
+    var $guess = $letterGuess.val();
     if (evt.which == 13){
       evt.preventDefault();
-      for (var i=0; i < mainWord.length; i++){
-        if ($letterGuess.val() == mainWord.charAt(i)){
-          alert("good guess!")
-        } else {
-          alert ("WRONG!")
+      console.log($guess);
+      if ($letterGuess.val().length > 1){
+        alert("Please enter one letter at a time!")
+      } else {
+        // var guess = $letterGuess.val();
+        for (var i=0; i < mainWord.length; i++){
+          var letters = mainWord.charAt(i);
+          console.log(letters);
+          var $guess = $letterGuess.val();
+          console.log($guess);
+          if (letters == $guess){
+            console.log("good guess!");
+          } else if (letters != $guess) {
+            console.log("WRONG!")
+          };
         };
-        // console.log(c);
-      };
-      console.log($letterGuess.val());
+        console.log($letterGuess.val());
+      }
 
     };
   });
-  //
-  // $letterGuess.keypress(function(evt){
-  //   if (evt.which == 13){
-  //     evt.preventDefault();
-  //   for(var i=0, c=''; c = mainWord.charAt(i); i++)
-  //     console.log(i);
-  //     console.log(c);
-  //
-  //   };
-  // });
 
 
 //iterate through each letter of mainWord and if #letterGuess val = _____, ; else alert("nope, try again")
