@@ -63,31 +63,20 @@ $(document).ready(function(){
     if (evt.which == 13){
       evt.preventDefault();
       console.log($guess);
-
-        for (var i=0; i < wordToGuess.length; i++){
-          var letters = wordToGuess.charAt(i);
-          console.log(letters);
-          var $guess = $letterGuess.val();
-          console.log($guess);
-
-          if (letters == $guess){
-            console.log("good guess!");
-          } else if (letters != $guess) {
-            console.log("WRONG!")
+      console.log(word);
+      for (var i=0; i < word.length; i++){
+          // var $guess = $letterGuess.val();
+          if (word[i] == $guess){
+            alert("good guess");
+            console.log(word[i] == $guess);
+            $guess = $letterGuess.val("");
+          } else if (word[i] != $guess) {
+            alert("try again");
+            $guess = $letterGuess.val("");
           };
-
-          if (letters == $guess){
-            alert($guess + " is a good guess");
-            $letterGuess.val("");
-          } else if (letters != $guess) {
-            alert("Try again");
-            $letterGuess.val("");
-          };
-
         };
-        console.log($guess);
-
     };
+
   });
 
 
