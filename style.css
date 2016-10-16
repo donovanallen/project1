@@ -43,7 +43,6 @@ h1, h3 {
 .hiddenLetter {
   display: inline-block;
   font-size: 60px;
-  border-bottom: 6px solid red;
   background-color: transparent;
   padding-left: 10px;
   padding-right: 10px;

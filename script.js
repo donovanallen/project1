@@ -8,8 +8,7 @@ $(document).ready(function(){
 
   var wordToGuess = [""];
   var word = [];
-
-  var mainWord = "hangman";
+  var guessedWord = [];
 
   var $letterGuess = $("#letterGuess");
 
@@ -25,8 +24,9 @@ $(document).ready(function(){
 
   var currentWord = $("#mainWord");
 
+
   console.log(playerOne);
-  console.log(mainWord);
+  console.log(guessedWord);
 
 // shows player form
   $button.on("click", function(){
@@ -46,9 +46,16 @@ $(document).ready(function(){
       word = wordToGuess.split("");
       console.log(word);
       $gameSpace.show();
+      // function showGuessField(){
+      //   for (var i=0; i < guessedWord.length; i++){
+      //     var guessedLetter = $("#guessedWord");
+      //     var correctLetter = guessedWord.text()
+      //     $("#mainWord").appendChild(correctLetter);
+      //   }
+      // }
       $.each(word, function(index, value){
         $("<div />", {
-          'text': value,
+          'text': "_",
           'class': "hiddenLetter"
         }).appendTo("#mainWord");
       });
@@ -57,30 +64,45 @@ $(document).ready(function(){
   });
 
 //on enter, match input with each letter of mainWord
-  $letterGuess.keypress(function(evt){
+$letterGuess.keypress(function(evt){
     var $guess = $letterGuess.val();
 
     if (evt.which == 13){
       evt.preventDefault();
       console.log($guess);
       console.log(word);
+      var indexOfMatch = $.inArray($guess, word);
+
       for (var i=0; i < word.length; i++){
           // var $guess = $letterGuess.val();
-          if (word[i] == $guess){
-            alert("good guess");
-            console.log(word[i] == $guess);
-            $guess = $letterGuess.val("");
-          } else if (word[i] != $guess) {
-            alert("try again");
-            $guess = $letterGuess.val("");
-          };
-        };
+          if (indexOfMatch >= 0){
+            var matchedLetter = word[indexOfMatch];
+            guessedWord.splice(indexOfMatch, 0, matchedLetter)
+            console.log("match!");
+            console.log("Your guess: " + $guess);
+            console.log("Hidden word: " + word);
+            console.log("Your correct word so far: " + guessedWord);
+            console.log("correct letter guess: " +  $.inArray($guess, word));
+            console.log(guessedWord);
+            $(".hiddenLetter").eq(indexOfMatch).replaceWith(matchedLetter);
+            $letterGuess.val("");
+            return matchedLetter;
+            } else {
+            console.log("wrong")
+            $letterGuess.val("");
+            };
+          // else if (word[i] != $guess) {
+          //   alert("try again");
+          //   $letterGuess.val("");
+          //   console.log($guess);
+          //   console.log(word);
+          // };
+      };
     };
+});
 
-  });
 
-
-//iterate through each letter of mainWord and if #letterGuess val = _____, ; else alert("nope, try again")
+// check if user guess array matches each letter of word array; if yes, add user guess value at same index of word that matches user guess, check if all user guess array = word array, if yes WIN, if no, do nothing (clear input box)
 
 
 
