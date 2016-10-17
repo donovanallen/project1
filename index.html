@@ -13,33 +13,43 @@
 
 <body>
 
-<h1>Welcome to HANGMAN</h1>
-<h3>Press the start button for the experience of a lifetime!</h3>
+  <h1>Welcome to HANGMAN</h1>
+  <h3>Press the start button for the experience of a lifetime!</h3>
 
-<div id="hangman">
-  <img src="hangman-image.png" alt="hangman" />
-</div>
-
-<main id="gameSpace">
-  <h2>
-    Guess a letter!
-  </h2>
-  <div id="mainWord">
+  <div id="hangman">
+    <div class="emptyTank" id="emptyTankSix"></div>
+    <div class="emptyTank" id="emptyTankFive"></div>
+    <div class="emptyTank" id="emptyTankFour"></div>
+    <div class="emptyTank" id="emptyTankThree"></div>
+    <div class="emptyTank" id="emptyTankTwo"></div>
+    <div class="emptyTank" id="emptyTankOne"></div>
   </div>
 
+  <main id="gameSpace">
+    <h2>
+      Guess a letter!
+    </h2>
+    <div id="mainWord">
+    </div>
+
+    <br>
+    <input id="letterGuess" type="input" name="letterGuess" value="" maxlength="1" size="1" />
+    <p class="incorrect">
+
+    </p>
+  </main>
+
   <br>
-  <input id="letterGuess" type="input" name="letterGuess" value="" maxlength="1" size="1" />
-</main>
 
-<br>
+  <form class="">
+    Enter your name here:<br>
+    <input id="nameInput" type="input" type="text" name="name" value=""></input>
+    <input id="playGame" type="button" name="name" value="Let's play!">
+  </form>
 
-<form class="">
-  Enter your name here:<br>
-  <input id="nameInput" type="input" type="text" name="name" value=""></input>
-  <input id="playGame" type="button" name="name" value="Let's play!">
-</form>
-<br>
-<button id="newGame" type="button" name="start">Start New Game</button>
+  <br>
+
+  <button id="newGame" type="button" name="start">Start New Game</button>
 
 </body>
 

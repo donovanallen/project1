@@ -9,6 +9,7 @@ $(document).ready(function(){
   var wordToGuess = [""];
   var word = [];
   var guessedWord = [];
+  var incorrectLetters = []
 
   var $letterGuess = $("#letterGuess");
 
@@ -46,13 +47,6 @@ $(document).ready(function(){
       word = wordToGuess.split("");
       console.log(word);
       $gameSpace.show();
-      // function showGuessField(){
-      //   for (var i=0; i < guessedWord.length; i++){
-      //     var guessedLetter = $("#guessedWord");
-      //     var correctLetter = guessedWord.text()
-      //     $("#mainWord").appendChild(correctLetter);
-      //   }
-      // }
       $.each(word, function(index, value){
         $("<div />", {
           'text': "_",
@@ -72,8 +66,10 @@ $letterGuess.keypress(function(evt){
       console.log($guess);
       console.log(word);
       var indexOfMatch = $.inArray($guess, word);
-
-      for (var i=0; i < word.length; i++){
+      // $.each(word, function(index, value){
+      //
+      // })
+      for (var i=0; i < word.length; i++){ // hange this to jq .each ^^
           // var $guess = $letterGuess.val();
           if (indexOfMatch >= 0){
             var matchedLetter = word[indexOfMatch];
@@ -88,15 +84,11 @@ $letterGuess.keypress(function(evt){
             $letterGuess.val("");
             return matchedLetter;
             } else {
-            console.log("wrong")
+            console.log("wrong");
+            $("#hangman div.emptyTank:last").addClass("filledTank"); // fill one tank div
+            // display incorrect guesses on screen
             $letterGuess.val("");
             };
-          // else if (word[i] != $guess) {
-          //   alert("try again");
-          //   $letterGuess.val("");
-          //   console.log($guess);
-          //   console.log(word);
-          // };
       };
     };
 });
