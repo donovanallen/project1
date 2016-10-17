@@ -24,6 +24,11 @@ main {
 
 .filledTank {
   background-color: red;
+  display: block;
+  border: 5px solid black;
+  height: 80px;
+  width: 300px;
+  align-self: center;
 }
 
 #newGame {
@@ -57,6 +62,10 @@ h1, h3 {
   display: none;
 }
 
+span{
+  display: none;
+}
+
 .hiddenLetter {
   display: inline-block;
   font-size: 60px;
@@ -66,6 +75,7 @@ h1, h3 {
   margin-left: 10px;
   margin-right: 10px;
   text-transform: uppercase;
+  border-bottom: 3px solid black;
 }
 
 #letterGuess {

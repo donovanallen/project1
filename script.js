@@ -4,12 +4,13 @@ $(document).ready(function(){
   var playerOne = { // this could also be an array?
     name: "",
     score: 0,
+    // incorrectLetters: []
   };
 
   var wordToGuess = [""];
   var word = [];
   var guessedWord = [];
-  var incorrectLetters = []
+  var incorrectLetters = [];
 
   var $letterGuess = $("#letterGuess");
 
@@ -24,6 +25,26 @@ $(document).ready(function(){
   var $play = $("#playGame");
 
   var currentWord = $("#mainWord");
+
+  var $incorrectField = $("p.incorrect");
+
+  var wrong = function(){
+    console.log("wrong. try again.");
+    $("#hangman div.emptyTank:last").addClass("filledTank");
+    $("p.incorrect").html(incorrectLetters)
+  };
+
+  var checkWin = function(){
+    if (guessedWord == word){
+      alert("You win!");
+    };
+  };
+
+  var checkLose = function(){
+    if (incorrectLetters.length >= 6){
+      alert("You lose!")
+    }
+  };
 
 
   console.log(playerOne);
@@ -49,7 +70,7 @@ $(document).ready(function(){
       $gameSpace.show();
       $.each(word, function(index, value){
         $("<div />", {
-          'text': "_",
+          'html': "<span>" + value + "</span>",
           'class': "hiddenLetter"
         }).appendTo("#mainWord");
       });
@@ -60,37 +81,33 @@ $(document).ready(function(){
 //on enter, match input with each letter of mainWord
 $letterGuess.keypress(function(evt){
     var $guess = $letterGuess.val();
+    var x = "false"
 
     if (evt.which == 13){
       evt.preventDefault();
-      console.log($guess);
-      console.log(word);
+      console.log("Your guess: " + $guess);
+      console.log("Hidden word: " + word);
       var indexOfMatch = $.inArray($guess, word);
-      // $.each(word, function(index, value){
-      //
-      // })
-      for (var i=0; i < word.length; i++){ // hange this to jq .each ^^
-          // var $guess = $letterGuess.val();
-          if (indexOfMatch >= 0){
-            var matchedLetter = word[indexOfMatch];
-            guessedWord.splice(indexOfMatch, 0, matchedLetter)
-            console.log("match!");
-            console.log("Your guess: " + $guess);
-            console.log("Hidden word: " + word);
-            console.log("Your correct word so far: " + guessedWord);
-            console.log("correct letter guess: " +  $.inArray($guess, word));
-            console.log(guessedWord);
-            $(".hiddenLetter").eq(indexOfMatch).replaceWith(matchedLetter);
-            $letterGuess.val("");
-            return matchedLetter;
-            } else {
-            console.log("wrong");
-            $("#hangman div.emptyTank:last").addClass("filledTank"); // fill one tank div
-            // display incorrect guesses on screen
-            $letterGuess.val("");
-            };
+      if (indexOfMatch >= 0) {
+        var matchedLetter = word[indexOfMatch];
+        guessedWord.splice(indexOfMatch, 0, matchedLetter);
+        $("span").eq(indexOfMatch).show();
+        console.log(indexOfMatch);
+        $letterGuess.val("");
+        x="true";
       };
+      if (x == "false") {
+          console.log("wrong");
+          $("#hangman div.emptyTank:last").removeClass("emptyTank").addClass("filledTank");
+          incorrectLetters.push($guess + ", "); // fill one tank div
+          // display incorrect guesses on screen
+          $letterGuess.val("");
+          console.log(incorrectLetters);
+          $("p.incorrect").html(incorrectLetters);
+        };
     };
+    checkWin();
+    checkLose();
 });
 
 
