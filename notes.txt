@@ -5,3 +5,7 @@ change alerts to onscreen prompts
 if letter wrong display on page in red (wrong letters div)
 
 zeichen = zeichen.toUpperCase(); ??
+
+font-family: 'Wendy One', sans-serif;
+font-family: 'Dosis', sans-serif;
+font-family: 'Rock Salt', cursive;

@@ -1,5 +1,6 @@
 body {
-  background-color: lightblue;
+  background: url(6913394-water-bubbles.jpg);
+  font-family: 'Dosis', sans-serif;
   display: flex;
   flex-direction: column;
 }
@@ -7,6 +8,8 @@ body {
 form {
   display: none;
   text-align: center;
+  font-size: 27px;
+  color: #E47176;
 }
 
 main {
@@ -15,28 +18,39 @@ main {
 
 .emptyTank {
   display: block;
-  border: 5px solid black;
-  height: 80px;
+  border: 2px solid black;
+  border-top: 0px;
+  height: 60px;
   width: 300px;
   background-color: transparent;
   align-self: center;
+  border-bottom-left-radius: 100%30px;
+  border-bottom-right-radius: 100%30px;  
 }
 
 .filledTank {
-  background-color: red;
+  background-color: rgba(64, 164, 223, 0.4);
+  background: url(6913394-water-bubbles.jpg);
+  opacity: 0.5;
+  background-size: 300px 60px;
+  background-repeat: no-repeat;
+  background-position: center;
   display: block;
-  border: 5px solid black;
-  height: 80px;
+  border: 2px solid blue;
+  height: 60px;
   width: 300px;
   align-self: center;
+  border-bottom-left-radius: 100%30px;
+  border-bottom-right-radius: 100%30px;
 }
 
 #newGame {
   align-self: center;
-  font-size: 30px;
+  font-size: 20px;
   margin: 10px;
-  padding: 10px;
+  padding: 5px;
   width: 20%;
+  font-family: 'Dosis', sans-serif;
 }
 
 #hangman {
@@ -45,6 +59,11 @@ main {
   flex-direction: column;
   align-content: center;
   justify-content: center;
+  align-self: center;
+  background: url(tumblr_ljg6suIf681qikgdeo1_1280.png);
+  background-size: 300px 360px;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 #hangman img {
@@ -53,17 +72,35 @@ main {
   justify-content: center;
 }
 
-h1, h3 {
+h1, h2 {
   text-align: center;
-  font-family: "verdana";
+}
+
+h1 {
+  font-family: 'Wendy One', sans-serif;
+  font-size: 60px;
+  margin-top: 30px;
+  margin-bottom: 0;
+  color: white;
+}
+
+h2 {
+  font-family: 'Dosis', sans-serif;
+  margin-bottom: 35px;
+  color: white;
 }
 
 #gameSpace {
   display: none;
+  font-family: 'Rock Salt', cursive;
+  font-size: 25px;
+  color: white;
 }
 
 span{
   display: none;
+  color: white;
+  font-size: 45px;
 }
 
 .hiddenLetter {
@@ -75,13 +112,44 @@ span{
   margin-left: 10px;
   margin-right: 10px;
   text-transform: uppercase;
-  border-bottom: 3px solid black;
+  border-bottom: 3px solid #E47176;
+  font-family: 'Rock Salt', cursive;
 }
 
 #letterGuess {
   height: 80px;
   width: 65px;
-  font-size: 75px;
+  font-size: 30px;
   text-transform: uppercase;
   text-align: center;
+  color: black;
+  font-family: 'Rock Salt', cursive;
 }
+
+#mainScreen{
+  display: flex;
+  flex-direction: row;
+  margin-left: 50px;
+  margin-right: 50px;
+}
+
+aside, #letterBox{
+  border: 3px solid white;
+  width: 300px;
+  height: auto;
+  text-align: center;
+  font-family: 'Dosis', sans-serif;
+  font-size: 30px;
+  padding: 5px;
+  color: white;
+}
+
+/*aside{
+  position: fixed;
+  left: 2;
+}
+
+#letterBox{
+  position: fixed;
+  right: 2;
+}*/

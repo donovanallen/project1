@@ -35,9 +35,11 @@ $(document).ready(function(){
   };
 
   var checkWin = function(){
-    if (guessedWord == word){
-      alert("You win!");
-    };
+    console.log("hello");
+    if ($("span").val()){
+      console.log($("span").val());
+      alert("You win!")
+    }
   };
 
   var checkLose = function(){

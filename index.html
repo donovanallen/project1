@@ -9,12 +9,28 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.js" charset="utf-8"></script>
   <script src="script.js"></script>
   <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css?family=Dosis:300,400,700|Rock+Salt|Wendy+One" rel="stylesheet">
 </head>
 
 <body>
 
-  <h1>Welcome to HANGMAN</h1>
-  <h3>Press the start button for the experience of a lifetime!</h3>
+  <h1>Welcome to Don't Drown, Man!</h1>
+  <h2>Your tank is fills up with water with every wrong guess. Don't drown, man!</h2>
+
+<div id="mainScreen">
+
+  <aside id="score">Scoreboard <br><br>
+    <div class="playerScore" id="playerOneScore">Player 1 <br>
+      <p>
+        0
+      </p>
+    </div>
+    <div class="playerScore" id="playerTwoScore">Player 2 <br>
+      <p>
+        0
+      </p>
+    </div>
+  </aside>
 
   <div id="hangman">
     <div class="emptyTank" id="emptyTankSix"></div>
@@ -24,25 +40,27 @@
     <div class="emptyTank" id="emptyTankTwo"></div>
     <div class="emptyTank" id="emptyTankOne"></div>
   </div>
+  <div id="letterBox">
+    <h4>Incorrect Letters</h4>
+    <p class="incorrect">
+    </p>
+  </div>
+</div>
 
   <main id="gameSpace">
-    <h2>
+    <h3>
       Guess a letter!
-    </h2>
+    </h3>
     <div id="mainWord">
     </div>
 
     <br>
     <input id="letterGuess" type="input" name="letterGuess" value="" maxlength="1" size="1" />
-    <h4>Incorrect Letters</h4>
-    <p class="incorrect">
-
-    </p>
   </main>
 
   <br>
 
-  <form class="">
+  <form onsubmit="sendMessage();return false">
     Enter your name here:<br>
     <input id="nameInput" type="input" type="text" name="name" value=""></input>
     <input id="playGame" type="button" name="name" value="Let's play!">
