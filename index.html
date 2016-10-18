@@ -15,24 +15,27 @@
 <body>
 
   <h1>Welcome to Don't Drown, Man!</h1>
-  <h2>Your tank is fills up with water with every wrong guess. Don't drown, man!</h2>
+  <h2>Your tank fills up with water with every wrong guess. Don't drown, man!</h2>
 
 <div id="mainScreen">
 
   <aside id="score">Scoreboard <br><br>
-    <div class="playerScore" id="playerOneScore">Player 1 <br>
-      <p>
+    <div class="playerScore">Player 1 <br>
+      <p id="playerOneScore">
         0
       </p>
     </div>
-    <div class="playerScore" id="playerTwoScore">Player 2 <br>
-      <p>
+    <div class="playerScore">Player 2 <br>
+      <p id="playerTwoScore">
         0
       </p>
     </div>
   </aside>
 
   <div id="hangman">
+    <div class="emptyTank" id="emptyTankNine"></div>
+    <div class="emptyTank" id="emptyTankEight"></div>
+    <div class="emptyTank" id="emptyTankSeven"></div>
     <div class="emptyTank" id="emptyTankSix"></div>
     <div class="emptyTank" id="emptyTankFive"></div>
     <div class="emptyTank" id="emptyTankFour"></div>
@@ -71,5 +74,6 @@
   <button id="newGame" type="button" name="start">Start New Game</button>
 
 </body>
+<footer>Made and loved by Donovan Allen ;) </footer>
 
 </html>

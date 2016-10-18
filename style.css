@@ -1,15 +1,52 @@
 body {
-  background: url(6913394-water-bubbles.jpg);
+  /*background: url(6913394-water-bubbles.jpg);*/
+  background-color: beige;
   font-family: 'Dosis', sans-serif;
   display: flex;
   flex-direction: column;
+  position: relative;
+}
+
+html {
+  height: 100%;
 }
 
 form {
   display: none;
   text-align: center;
   font-size: 27px;
-  color: #E47176;
+  color: coral;
+}
+
+#playGame {
+	-moz-box-shadow:inset 0px 39px 0px -24px #FF7F50;
+	-webkit-box-shadow:inset 0px 39px 0px -24px #FF7F50;
+	box-shadow:inset 0px 39px 0px -24px #FF7F50;
+	background-color:#e4685d;
+	-moz-border-radius:4px;
+	-webkit-border-radius:4px;
+	border-radius:4px;
+	border:1px solid #ffffff;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:15px;
+	padding:6px 15px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #b23e35;
+}
+#playGame:hover {
+	background-color:#FF7F50;
+}
+#playGame:active {
+	position:relative;
+	top:1px;
+}
+
+#nameInput {
+  font-size: 14px;
+  padding: 4px;
 }
 
 main {
@@ -20,12 +57,12 @@ main {
   display: block;
   border: 2px solid black;
   border-top: 0px;
-  height: 60px;
+  height: 40px;
   width: 300px;
-  background-color: transparent;
+  background-color: rgba(64, 164, 223, 0.2);
   align-self: center;
-  border-bottom-left-radius: 100%30px;
-  border-bottom-right-radius: 100%30px;  
+  border-bottom-left-radius: 100%20px;
+  border-bottom-right-radius: 100%20px;
 }
 
 .filledTank {
@@ -37,11 +74,11 @@ main {
   background-position: center;
   display: block;
   border: 2px solid blue;
-  height: 60px;
+  height: 40px;
   width: 300px;
   align-self: center;
-  border-bottom-left-radius: 100%30px;
-  border-bottom-right-radius: 100%30px;
+  border-bottom-left-radius: 100%20px;
+  border-bottom-right-radius: 100%20px;
 }
 
 #newGame {
@@ -61,7 +98,7 @@ main {
   justify-content: center;
   align-self: center;
   background: url(tumblr_ljg6suIf681qikgdeo1_1280.png);
-  background-size: 300px 360px;
+  background-size: 220px 360px;
   background-repeat: no-repeat;
   background-position: center;
 }
@@ -81,25 +118,25 @@ h1 {
   font-size: 60px;
   margin-top: 30px;
   margin-bottom: 0;
-  color: white;
+  color: #58AEDF;
 }
 
 h2 {
   font-family: 'Dosis', sans-serif;
   margin-bottom: 35px;
-  color: white;
+  color: coral;
 }
 
 #gameSpace {
   display: none;
   font-family: 'Rock Salt', cursive;
   font-size: 25px;
-  color: white;
+  color: #58AEDF;
 }
 
 span{
   display: none;
-  color: white;
+  color: #58AEDF;
   font-size: 45px;
 }
 
@@ -134,22 +171,30 @@ span{
 }
 
 aside, #letterBox{
-  border: 3px solid white;
+  border: 5px solid navy;
   width: 300px;
   height: auto;
   text-align: center;
   font-family: 'Dosis', sans-serif;
   font-size: 30px;
   padding: 5px;
-  color: white;
+  color: #58AEDF;
 }
 
-/*aside{
-  position: fixed;
-  left: 2;
+#gameOver {
+  height: 90%;
+  width: 90%;
+  border: 10px solid blue;
+  background: url(6913394-water-bubbles.jpg);
+  text-align: center;
+  font-size: 80px;
+  color: coral;
+  top: 123px;
+  position: absolute;
 }
 
-#letterBox{
-  position: fixed;
-  right: 2;
-}*/
+footer{
+  font-size: 8px;
+  text-align: center;
+  justify-content: flex-end;
+}

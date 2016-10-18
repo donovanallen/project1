@@ -28,25 +28,23 @@ $(document).ready(function(){
 
   var $incorrectField = $("p.incorrect");
 
-  var wrong = function(){
-    console.log("wrong. try again.");
-    $("#hangman div.emptyTank:last").addClass("filledTank");
-    $("p.incorrect").html(incorrectLetters)
-  };
-
   var checkWin = function(){
-    console.log("hello");
-    if ($("span").val()){
-      console.log($("span").val());
-      alert("You win!")
-    }
+    if (word == guessedWord){
+      alert("You win!");
+    } else {
+      checkLose();
+    };
   };
 
   var checkLose = function(){
-    if (incorrectLetters.length >= 6){
-      alert("You lose!")
-    }
+    if (incorrectLetters.length >= 8){
+      $("#mainScreen").prepend("<div>").addClass("gameOver");
+      // $("body").css(background: url(6913394-water-bubbles.jpg));
+      alert("You lose!");
+    };
   };
+
+  $("#playerOneScore").text(incorrectLetters.length);
 
 
   console.log(playerOne);
@@ -84,21 +82,34 @@ $(document).ready(function(){
 $letterGuess.keypress(function(evt){
     var $guess = $letterGuess.val();
     var x = "false"
-
-    if (evt.which == 13){
-      evt.preventDefault();
-      console.log("Your guess: " + $guess);
-      console.log("Hidden word: " + word);
-      var indexOfMatch = $.inArray($guess, word);
-      if (indexOfMatch >= 0) {
-        var matchedLetter = word[indexOfMatch];
-        guessedWord.splice(indexOfMatch, 0, matchedLetter);
-        $("span").eq(indexOfMatch).show();
+    if ($guess != ""){
+      if (evt.which == 13){
+        evt.preventDefault();
+        console.log("Your guess: " + $guess);
+        console.log("Hidden word: " + word);
+        function indexesOfMatch(word, $guess) {
+          var indexes = [], i;
+          for(i = 0; i < word.length; i++)
+          if (word[i] === $guess)
+          indexes.push(i);
+          console.log(indexes);
+          return indexes;
+        };
+        var indexOfMatch = $.inArray($guess, word);
         console.log(indexOfMatch);
-        $letterGuess.val("");
-        x="true";
-      };
-      if (x == "false") {
+        if (indexOfMatch >= 0) {
+          var matchedLetter = word[indexOfMatch];
+          guessedWord.splice(indexOfMatch, 0, matchedLetter);
+          $("span").eq(indexOfMatch).show();
+          console.log(guessedWord);
+          console.log(indexOfMatch);
+          $letterGuess.val("");
+          x="true";
+          if (word == guessedWord){
+            alert("You win!");
+          };
+        };
+        if (x == "false") {
           console.log("wrong");
           $("#hangman div.emptyTank:last").removeClass("emptyTank").addClass("filledTank");
           incorrectLetters.push($guess + ", "); // fill one tank div
@@ -106,14 +117,22 @@ $letterGuess.keypress(function(evt){
           $letterGuess.val("");
           console.log(incorrectLetters);
           $("p.incorrect").html(incorrectLetters);
+          $("#playerOneScore").text(incorrectLetters.length + " feet of water");
         };
+      };
+      // checkWin();
+      checkLose();
     };
-    checkWin();
-    checkLose();
+
 });
+
+console.log(word);
+console.log(guessedWord);
 
 
 // check if user guess array matches each letter of word array; if yes, add user guess value at same index of word that matches user guess, check if all user guess array = word array, if yes WIN, if no, do nothing (clear input box)
+
+// IF GUESSED WORD ARRAY = WORD ARRAY
 
 
 
