@@ -119,24 +119,29 @@ $(document).ready(function(){
         console.log("Hidden word: " + word);
         // indexOfMatch = $.inArray($guess, word);
         var indexesOfMatches = [];
+
         word.filter(function(value, index){
           if (value == $guess){
             indexesOfMatches.push(index);
           };
-        })
+        });
         console.log(indexesOfMatches);
 
 
 
         console.log(indexesOfMatches);
-        if (indexesOfMatches >= 0) {
-          var matchedLetter = word[indexesOfMatches];
+        if(indexesOfMatches.length>=1){
+          for (i=0; i<indexesOfMatches.length; i++){
+            var matchedLetter = word[ indexesOfMatches[i] ];
+
+            guessedWord.push(matchedLetter);
+
+            $("span").eq(indexesOfMatches[i]).show();
+          };
           // console.log(word[i]);
           console.log("presplice", guessedWord, "idx of match", indexesOfMatches);
           // guessedWord.splice(indexOfMatch, 0, matchedLetter); // *
-          guessedWord.push(matchedLetter)
 
-          $("span").eq(indexesOfMatches).show();
           console.log("post splice", guessedWord);
           console.log(indexesOfMatches);
           $letterGuess.val("");
