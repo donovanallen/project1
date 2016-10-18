@@ -4,8 +4,16 @@ $(document).ready(function(){
   var playerOne = { // this could also be an array?
     name: "",
     score: 0,
-    // incorrectLetters: []
   };
+
+  var playerTwo = {
+    name: "",
+    score: 0,
+    wordToGuess: [""],
+    word: [],
+    guessedWord: [],
+    incorrectLetters: []
+  }
 
   var wordToGuess = [""];
   var word = [];
@@ -28,8 +36,28 @@ $(document).ready(function(){
 
   var $incorrectField = $("p.incorrect");
 
+  // var hello = function(){
+  //   playerTwo.name = $nameInput.val();
+  //   alert("Your turn, " + playerTwo.name + ". You are Player 2.");
+  //   console.log(playerTwo);
+  //   playerTwo.wordToGuess = prompt("Enter a word for Player 1 to guess.");
+  //   if (playerTwo.wordToGuess != ""){
+  //     console.log(playerTwo.wordToGuess);
+  //     word = playerTwo.wordToGuess.split("");
+  //     console.log(playerTwo.word);
+  //     $gameSpace.show();
+  //     $("span").text('');
+  //     $.each(word, function(index, value){
+  //       $("<div />", {
+  //         'html': "<span>" + value + "</span>",
+  //         'class': "hiddenLetter"
+  //       }).appendTo("#mainWord");
+  //     });
+  //   };
+  // };
+
   var checkWin = function(){
-    if (word == guessedWord){
+    if (word.length == guessedWord.length){
       alert("You win!");
     } else {
       checkLose();
@@ -37,28 +65,31 @@ $(document).ready(function(){
   };
 
   var checkLose = function(){
-    if (incorrectLetters.length >= 8){
-      $("#mainScreen").prepend("<div>").addClass("gameOver");
+    if (incorrectLetters.length >= 9){
+      // $("#mainScreen").prepend("<div>").addClass("gameOver");
       // $("body").css(background: url(6913394-water-bubbles.jpg));
       alert("You lose!");
     };
   };
 
-  $("#playerOneScore").text(incorrectLetters.length);
+  $("#playerTwoScore").text(incorrectLetters.length);
+  // $("#playerTwoScore").text(incorrectLetters.length)
 
 
   console.log(playerOne);
   console.log(guessedWord);
 
-// shows player form
+  // shows player form
   $button.on("click", function(){
     $form.show();
   });
 
-//gets player's name and greets, logs in obj
-  $play.on("click", function(evt){
+  //gets player's name and greets, logs in obj
+  $form.on("submit", function(evt){
     evt.preventDefault();
-    playerOne.name = $nameInput.val();
+    if ( $nameInput.val() ){
+      playerOne.name = $nameInput.val();
+    };
     $form.hide();
     alert("Hello, " + playerOne.name + ". You are Player 1.");
     console.log(playerOne);
@@ -77,9 +108,8 @@ $(document).ready(function(){
     };
     console.log();
   });
-
-//on enter, match input with each letter of mainWord
-$letterGuess.keypress(function(evt){
+  //on enter, match input with each letter of mainWord
+  $letterGuess.keypress(function(evt){
     var $guess = $letterGuess.val();
     var x = "false"
     if ($guess != ""){
@@ -87,33 +117,36 @@ $letterGuess.keypress(function(evt){
         evt.preventDefault();
         console.log("Your guess: " + $guess);
         console.log("Hidden word: " + word);
-        function indexesOfMatch(word, $guess) {
-          var indexes = [], i;
-          for(i = 0; i < word.length; i++)
-          if (word[i] === $guess)
-          indexes.push(i);
-          console.log(indexes);
-          return indexes;
-        };
-        var indexOfMatch = $.inArray($guess, word);
-        console.log(indexOfMatch);
-        if (indexOfMatch >= 0) {
-          var matchedLetter = word[indexOfMatch];
-          guessedWord.splice(indexOfMatch, 0, matchedLetter);
-          $("span").eq(indexOfMatch).show();
-          console.log(guessedWord);
-          console.log(indexOfMatch);
+        // indexOfMatch = $.inArray($guess, word);
+        var indexesOfMatches = [];
+        word.filter(function(value, index){
+          if (value == $guess){
+            indexesOfMatches.push(index);
+          };
+        })
+        console.log(indexesOfMatches);
+
+
+
+        console.log(indexesOfMatches);
+        if (indexesOfMatches >= 0) {
+          var matchedLetter = word[indexesOfMatches];
+          // console.log(word[i]);
+          console.log("presplice", guessedWord, "idx of match", indexesOfMatches);
+          // guessedWord.splice(indexOfMatch, 0, matchedLetter); // *
+          guessedWord.push(matchedLetter)
+
+          $("span").eq(indexesOfMatches).show();
+          console.log("post splice", guessedWord);
+          console.log(indexesOfMatches);
           $letterGuess.val("");
           x="true";
-          if (word == guessedWord){
-            alert("You win!");
-          };
+          checkWin();
         };
         if (x == "false") {
           console.log("wrong");
           $("#hangman div.emptyTank:last").removeClass("emptyTank").addClass("filledTank");
-          incorrectLetters.push($guess + ", "); // fill one tank div
-          // display incorrect guesses on screen
+          incorrectLetters.push($guess + ", ");
           $letterGuess.val("");
           console.log(incorrectLetters);
           $("p.incorrect").html(incorrectLetters);
@@ -123,16 +156,17 @@ $letterGuess.keypress(function(evt){
       // checkWin();
       checkLose();
     };
+  });
 
-});
+  // if (checkLose = true){
+  //   hello();
+  // } else if (checkWin = true) {
+  //   hello();
+  // };
+  console.log(word);
+  console.log(guessedWord);
 
-console.log(word);
-console.log(guessedWord);
-
-
-// check if user guess array matches each letter of word array; if yes, add user guess value at same index of word that matches user guess, check if all user guess array = word array, if yes WIN, if no, do nothing (clear input box)
-
-// IF GUESSED WORD ARRAY = WORD ARRAY
+  // IF GUESSED WORD ARRAY = WORD ARRAY
 
 
 

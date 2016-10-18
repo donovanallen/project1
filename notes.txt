@@ -9,3 +9,13 @@ zeichen = zeichen.toUpperCase(); ??
 font-family: 'Wendy One', sans-serif;
 font-family: 'Dosis', sans-serif;
 font-family: 'Rock Salt', cursive;
+
+add player 2 // 2nd round
+
+add winner (if guessedWord = word)
+
+timer?
+
+scoring
+
+stick aside and incorrectField to fixed absolute (top of page)
